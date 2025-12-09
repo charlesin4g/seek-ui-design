@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徒步旅行应用</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcomePage" class="page active">
+        <div class="welcome-content">
+            <div class="mountain-icon">
+                <i class="fas fa-mountain"></i>
+            </div>
+            <h1>seek</h1>
+            <p>find your dreams ~ </p>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page">
+        <main class="home-content-new">
+            <!-- Home Banner -->
+            <div class="page-banner">
+                <div class="page-banner-text">
+                    <h3>你好, 旅行者</h3>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid-new">
+                <div class="stat-card-new">
+                    <i class="fas fa-shoe-prints"></i>
+                    <h3 id="stepsCountNew">28432</h3>
+                </div>
+                <div class="stat-card-new">
+                    <i class="fas fa-route"></i>
+                    <h3 id="distanceCountNew">26.2<span class="unit">km</span></h3>
+                </div>
+                <div class="stat-card-new">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="durationCountNew">11.5<span class="unit">h</span></h3>
+                </div>
+            </div>
+
+            <!-- Heart Rate Chart -->
+            <div class="chart-container-new glass">
+                 <div class="chart-header">
+                    <h3>心率趋势</h3>
+                </div>
+                <canvas id="heartRateChartNew" width="400" height="180"></canvas>
+            </div>
+
+            <!-- Upcoming Travel -->
+            <div class="upcoming-travel">
+                <div class="travel-header">
+                    <h3>即将出行</h3>
+                    <a href="#" class="see-all-btn">查看全部 <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="travel-list">
+                    <div class="travel-card">
+                        <div class="travel-icon train">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="travel-info">
+                            <h4>G1234 上海虹桥 <i class="fas fa-arrow-right"></i> 北京南</h4>
+                            <p><i class="fas fa-clock"></i> 今天 14:30</p>
+                            <p><i class="fas fa-subway"></i> 05车 12A</p>
+                        </div>
+                        <div class="travel-status departing">即将出发</div>
+                    </div>
+                    <div class="travel-card">
+                        <div class="travel-icon flight">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="travel-info">
+                            <h4>CA1234 北京首都 <i class="fas fa-arrow-right"></i> 成都双流</h4>
+                            <p><i class="fas fa-clock"></i> 明天 09:15</p>
+                            <p><i class="fas fa-chair"></i> 经济舱 32F</p>
+                        </div>
+                        <div class="travel-status booked">已预订</div>
+                    </div>
+                    <div class="travel-card">
+                        <div class="travel-icon train">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="travel-info">
+                            <h4>D5678 成都东 <i class="fas fa-arrow-right"></i> 重庆北</h4>
+                            <p><i class="fas fa-clock"></i> 12月12日 16:20</p>
+                            <p><i class="fas fa-subway"></i> 03车 08D</p>
+                        </div>
+                        <div class="travel-status booked">已预订</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Activity Feed Page -->
+    <div id="feedPage" class="page">
+        <main class="feed-content-new">
+            <div class="page-banner">
+                <div class="page-banner-text">
+                    <h2>我的动态</h2>
+                    <p>已完成 <span>5</span> 次精彩旅程</p>
+                </div>
+                <div class="page-banner-actions">
+                    <button>
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="feed-timeline" id="feedTimeline">
+                <!-- Timeline items will be injected by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footprint Page -->
+    <div id="footprintPage" class="page">
+        <main class="footprint-content">
+            <div class="page-banner">
+                <div class="page-banner-text">
+                    <h2>我的足迹</h2>
+                </div>
+                <div class="page-banner-actions">
+                     <button>
+                        <i class="fas fa-map"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="map-container glass">
+                <div id="map" class="map">
+                    <!-- Interactive map will be rendered here -->
+                </div>
+            </div>
+            
+            <div class="location-details glass" id="locationDetails" style="display: none;">
+                <h3 id="locationName">地点名称</h3>
+                <div class="location-info">
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="visitDate">访问日期</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-route"></i>
+                        <span id="routeInfo">路线信息</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span id="expenses">花费</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Plan Page -->
+    <div id="planPage" class="page">
+        <main class="plan-content">
+             <div class="page-banner">
+                <div class="page-banner-text">
+                    <h2>旅行计划</h2>
+                </div>
+                <div class="page-banner-actions">
+                     <button class="add-plan-btn glass">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="plan-list" id="planList">
+                <!-- Plans will be populated by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page">
+        <main class="profile-content">
+             <div class="page-banner">
+                <div class="page-banner-text">
+                    <h2>个人资料</h2>
+                </div>
+                <div class="page-banner-actions">
+                     <button>
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="profile-header glass">
+                <div class="profile-avatar">
+                    <img src="https://picsum.photos/seed/hiker/100/100.jpg" alt="头像">
+                </div>
+                <h3>yelan</h3>
+            </div>
+
+            <div class="stats-grid-new">
+                <div class="stat-card-new">
+                    <p>总活动次数</p>
+                    <h3 id="stepsCountNew">42</h3>
+                </div>
+                <div class="stat-card-new">
+                    <p>已访问地点</p>
+                    <h3 id="distanceCountNew">156</h3>
+                </div>
+                <div class="stat-card-new">
+                    <p>总里程</p>
+                    <h3 id="durationCountNew">2847<span class="unit">km</span></h3>
+                </div>
+            </div>
+            
+            <div class="profile-menu">
+                <div class="menu-item glass">
+                    <svg t="1765271179583" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2668" width="200" height="200"><path d="M898.7 927c-24.9 58-82 95.6-145.1 95.6H264.2c-64.2 0-122-38.9-146.2-98.4-143-72.9-149.9-282.1-11.6-365.6V433.2c0-165.8 119-307.8 282.3-336.8 27.4-126.6 219.7-126.3 246.2 1 160.7 31.3 276.7 172.1 276.7 335.8v122.7c145.9 82.3 138.4 300.6-12.9 371.1z m-792.4-62.3V610.2c-78 66.6-76.3 191.5 0 256.1v-1.6zM434.4 91.5c4.6-0.2 9.3-0.4 13.9-0.4h121c6.5 0 12.9 0.2 19.3 0.6-27.2-63.8-126.7-63.9-154.2-0.2z m435 346.9c0-168.6-136.7-305.2-305.2-305.2H453.6c-168.6 0-305.2 136.7-305.2 305.2v410.5c0 72.7 58.9 131.6 131.6 131.6h457.9c72.7 0 131.6-58.9 131.6-131.6V438.4z m42.1 167.8v258.6c0 1.9-0.1 3.8-0.1 5.8 83.5-64.5 85.5-197.8 0.1-264.4zM701 564.8H332.6c-43.6 0-78.9-35.3-78.9-78.9V354.2c0-43.6 35.3-78.9 78.9-78.9H701c43.6 0 78.9 35.3 78.9 78.9v131.6c0 43.6-35.3 79-78.9 79zM737.8 370c0-29.1-23.6-52.6-52.6-52.6H348.4c-14 0-27.3 5.5-37.2 15.4-9.9 9.9-15.4 23.3-15.4 37.2v100c0 14 5.5 27.3 15.4 37.2 9.9 9.9 23.3 15.4 37.2 15.4h336.8c29.1 0 52.6-23.6 52.6-52.6V370z m0 0" p-id="2669" fill="#1afa29"></path></svg>
+                    <span>个人资产</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item glass">
+                    <svg t="1765271908041" class="icon" viewBox="0 0 1436 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3759" width="200" height="200"><path d="M1239.834809 1023.998778a197.675071 197.675071 0 1 1 196.976573-197.500447A197.849696 197.849696 0 0 1 1239.834809 1023.998778zM1239.834809 663.57356a162.750147 162.750147 0 1 0 162.575522 162.750147A162.924771 162.924771 0 0 0 1239.834809 663.57356z" fill="#1afa29" p-id="3760"></path><path d="M1340.069342 745.123258a5.587988 5.587988 0 0 1 5.587988 5.587988v34.924924H1327.14712V768.348332a5.587988 5.587988 0 0 0-5.587988-5.587987h-157.162159a5.587988 5.587988 0 0 0-5.587988 5.587987v17.462463h-17.462462v-34.924925a5.587988 5.587988 0 0 1 5.587988-5.587988h90.979427a212.343539 212.343539 0 0 0-11.175975-22.875825l14.493843-4.190991a5.413363 5.413363 0 0 1 6.286487 2.61937A241.331226 241.331226 0 0 1 1257.297271 743.900886l-4.016366 1.222372zM1257.297271 795.065899h67.230479a5.587988 5.587988 0 0 1 5.587988 5.587988v111.410509h-17.462462v-12.922222H1257.297271a5.587988 5.587988 0 0 0-5.587988 5.587987v41.036786h-18.684834v-41.036786a5.587988 5.587988 0 0 0-5.587988-5.587987h-54.657506v13.969969h-17.462462v-112.458256a5.587988 5.587988 0 0 1 5.587988-5.587988h66.706605a5.587988 5.587988 0 0 0 5.587988-5.587987v-18.335586h18.859459v18.335586a5.587988 5.587988 0 0 0 5.238738 5.587987z m-84.867566 22.002703v15.89084a5.587988 5.587988 0 0 0 5.587988 5.587988h49.069519a5.587988 5.587988 0 0 0 5.587988-5.587988v-15.89084a5.587988 5.587988 0 0 0-5.587988-5.587988h-48.720269a5.587988 5.587988 0 0 0-5.587988 5.587988z m60.245495 60.070869v-17.462462a5.413363 5.413363 0 0 0-5.587988-5.413363h-48.720269a5.413363 5.413363 0 0 0-5.587988 5.413363v17.462462a5.587988 5.587988 0 0 0 5.587988 5.587988h49.069518a5.587988 5.587988 0 0 0 5.587988-5.587988z m19.034083-60.070869v15.89084a5.587988 5.587988 0 0 0 5.587988 5.238739h49.069519a5.587988 5.587988 0 0 0 5.587988-5.587988v-15.890841a5.587988 5.587988 0 0 0-5.587988-5.587987H1257.297271a5.587988 5.587988 0 0 0-5.238738 5.937237z m60.245495 60.070869v-17.462462a5.413363 5.413363 0 0 0-5.587988-5.413363H1257.297271a5.413363 5.413363 0 0 0-5.587988 5.413363v17.462462a5.587988 5.587988 0 0 0 5.587988 5.587988h49.069519a5.587988 5.587988 0 0 0 5.937237-5.587988zM1191.289165 445.467408H756.997732a17.462462 17.462462 0 0 1 0-34.924924h434.291433a17.462462 17.462462 0 0 1 0 34.924924zM1191.289165 609.090678H756.997732a17.462462 17.462462 0 0 1 0-34.924924h434.291433a17.462462 17.462462 0 0 1 0 34.924924z" fill="#1afa29" p-id="3761"></path><path d="M422.242334 570.149388a231.726872 231.726872 0 0 1-68.802101 55.356004 191.039335 191.039335 0 0 0-20.431081-17.462462 181.434981 181.434981 0 0 0 63.737987-45.926275z m177.767864-34.924925v22.002703h-118.744742v45.053152c0 12.922222-2.444745 20.081831-12.223724 23.574324a125.555103 125.555103 0 0 1-44.354654 4.190991 92.2018 92.2018 0 0 0-8.731231-24.272823h32.305555c4.190991 0 5.238739-1.222372 5.238739-4.714864v-44.703903h-118.395493V534.35134z m-179.86336-142.49369h-81.200449v-23.05045H593.723711v22.177327h-81.898947v19.383332h67.579729v69.849849H356.234227v-69.849849h63.912611z m-49.418768 125.904351v-22.351951h193.48408v21.478828z m11.350601-57.975374h38.068167v-29.162311h-38.068167z m103.5524-67.928977h-39.814414v19.383333h39.814414z m-39.814414 67.928977h39.814414v-29.162311h-39.814414z m82.073572 102.504653a466.946237 466.946237 0 0 1 69.849849 44.703903l-21.478829 15.017717A406.875367 406.875367 0 0 0 507.633773 576.261249z m-16.065465-130.793841v28.289188h40.163663v-29.162311z" fill="#1afa29" p-id="3762"></path><path d="M1100.135112 984.533613H224.916512a83.470569 83.470569 0 0 1-83.295944-83.295944V211.819665a83.470569 83.470569 0 0 1 83.295944-83.470569h1074.465293a83.470569 83.470569 0 0 1 83.295944 83.470569v473.058099a17.462462 17.462462 0 0 1-34.924924 0V211.819665a48.545645 48.545645 0 0 0-48.37102-48.545644H224.916512a48.545645 48.545645 0 0 0-48.37102 48.545644v689.418004a48.545645 48.545645 0 0 0 48.37102 48.37102H1100.135112a17.462462 17.462462 0 0 1 0 34.924924z" fill="#1afa29" p-id="3763"></path><path d="M155.066663 855.660643H83.295944A83.470569 83.470569 0 0 1 0 772.888573V83.295944A83.470569 83.470569 0 0 1 83.295944 0H1157.761237a83.470569 83.470569 0 0 1 83.295945 83.295944v54.133633a17.462462 17.462462 0 1 1-34.924925 0v-54.133633A48.545645 48.545645 0 0 0 1157.761237 34.924924H83.295944A48.37102 48.37102 0 0 0 34.924924 83.295944v689.592629A48.37102 48.37102 0 0 0 83.295944 820.735719h71.770719a17.462462 17.462462 0 1 1 0 34.924924z" fill="#1afa29" p-id="3764"></path></svg>
+                    <span>车票统计</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item glass">
+                    <svg t="1765271955194" class="icon" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4872" width="200" height="200"><path d="M564.926 865.612c-1.659 0-3.393-0.075-5.052-0.353-15.787-2.225-27.929-14.267-30.155-30.080l-39.842-283.95-329.566-46.181c-9.817-1.418-17.512-9.112-18.892-18.893-1.343-9.817 3.922-19.357 12.996-23.342l678.626-301.359c13.414-5.969 28.921-3.105 39.332 7.342 10.458 10.419 13.321 25.881 7.314 39.368l-119.912 270.185c-4.987 11.152-18.161 16.204-29.274 11.263-11.199-4.977-16.24-18.077-11.272-29.273l110.496-248.808-586.43 260.359 259.468 36.413c15.582 2.225 27.939 14.647 30.164 30.155l36.366 259.506 85.494-192.624c4.987-11.188 18.122-16.315 29.312-11.263 11.198 4.977 16.24 18.076 11.272 29.237l-98.241 221.371c-5.784 12.959-18.325 20.932-32.202 20.932z" fill="#1afa29" p-id="4873"></path></svg>
+                    <span>活动统计</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item glass">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.5"></path><path d="M16 14h-2a2 2 0 1 0 0 4h2"></path><path d="m12 14-2-2 2-2"></path></svg>
+                    <span>开发者: yelan</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav glass">
+        <button class="nav-btn active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </button>
+        <button class="nav-btn" data-page="feed">
+            <i class="fas fa-stream"></i>
+            <span>动态</span>
+        </button>
+        <button class="nav-btn" data-page="footprint">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>足迹</span>
+        </button>
+        <button class="nav-btn" data-page="plan">
+            <i class="fas fa-calendar-alt"></i>
+            <span>计划</span>
+        </button>
+        <button class="nav-btn" data-page="profile">
+            <i class="fas fa-user"></i>
+            <span>我的</span>
+        </button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
